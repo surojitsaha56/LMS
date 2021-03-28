@@ -17,3 +17,20 @@ def signup(request):
     else:
         pass
     return render(request, 'registration/signup.html')
+
+def login(request):
+    if request.method=='POST':
+        user=auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+        if user is not None:
+            auth.login(request, user)
+            return redirect('home')
+        else:
+            return render(request, 'registration/login.html', {'error':'username or password is incorrect'})
+    else:
+        return render(request, 'registration/login.html')
+
+def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        return redirect('home')
+
