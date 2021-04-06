@@ -1,38 +1,30 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.shortcuts import render
 from django.contrib import auth
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+
+
+from .forms import CreateAdminForm
 
 def signup(request):
-    if request.method == 'POST':
-        if request.POST['password1']==request.POST['password2']:
-            try:
-                user=User.objects.get(username=request.POST['username'])
-                return render(request, 'registration/signup.html', {'error':'Username has already been taken'})
-            except User.DoesNotExist:
-                user=User.objects.create_user(request.POST['username'], password=request.POST['password1'])
-                auth.login(request, user)
-                return redirect('home')
-        else:
-            return render(request, 'registration/signup.html', {'error':'Password must match'})
-    else:
-        pass
-    return render(request, 'registration/signup.html')
+    form=CreateAdminForm()
+
+    if request.method=='POST':
+        form=CreateAdminForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account was created')
+    context={'form': form}
+    return render(request, 'registration/signup.html', context)
 
 def login(request):
-    if request.method=='POST':
-        user=auth.authenticate(username=request.POST['username'], password=request.POST['password'])
-        if user is not None:
-            auth.login(request, user)
-            return redirect('menu')
-        else:
-            return render(request, 'registration/login.html', {'error':'username or password is incorrect'})
-    else:
-        return render(request, 'registration/login.html')
+    form=UserCreationForm()
+
+    context={'form': form}
+    return render(request, 'registration/login.html')
 
 def logout(request):
-    if request.method == 'POST':
-        auth.logout(request)
-        return redirect('home')
+    return render('home')
 
 def menu(request):
     return render(request, 'registration/menu.html')

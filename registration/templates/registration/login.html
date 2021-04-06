@@ -7,26 +7,13 @@
 {%endif%}
 
 <h1>Login</h1>
-<hr>
-<div class='container'>
-    <form method="POST" action="{%url 'login'%}">
-        {%csrf_token%}
-        Username:
-        <br>
-        <input type='text' name="username">
-        </input>
-        <br><br>
-        Password:
-        <br>
-        <input type='password' name="password">
-        <br>
-        <br>
-        </input>
-        <br><br>
-        <input class="btn btn-primary" type="submit" value="Login"></input>
-    
-    </form>
-</div>
 
+<form method="POST" action="">
+    {{form}}
+    {{% for message in messages%}}
+        <p>{{message}}</p>
+    {%endfor%}
+
+</form>
 
 {% endblock %}
