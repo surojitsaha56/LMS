@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
-
-from .forms import CreateAdminForm
+from .forms import CreateAdminForm, LoginForm
 
 def signup(request):
     form=CreateAdminForm()
@@ -17,10 +17,15 @@ def signup(request):
     context={'form': form}
     return render(request, 'registration/signup.html', context)
 
-def login(request):
-    form=UserCreationForm()
-
-    context={'form': form}
+def loginPage(request):
+    
+    if request.method=='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('menu')
     return render(request, 'registration/login.html')
 
 def logout(request):

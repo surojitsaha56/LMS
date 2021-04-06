@@ -2,18 +2,26 @@
 
 {% block content %}
 
-{% if error%}
-{{error}}
-{%endif%}
 
-<h1>Login</h1>
 
-<form method="POST" action="">
-    {{form}}
-    {{% for message in messages%}}
-        <p>{{message}}</p>
-    {%endfor%}
+<h1>Login Up</h1>
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
 
-</form>
+        <input type="username" name="username" placeholder="username">
+        <br><br>
+        <input type="password" name="password" placeholder="password">
+        <br><br>
+
+        {{form.password1.label}}
+        {{form.password1}}
+        <br><br>
+        <input type="submit" name="Login">
+    
+    </form>
+    
+</div>
+
 
 {% endblock %}
