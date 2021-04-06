@@ -17,6 +17,10 @@
         {{form.password1.label}}
         {{form.password1}}
         <br><br>
+        {{form.errors}}
+        {% for message in messages %}
+            <p id="messages">{{message}}</p>
+        {%endfor%}
         <input type="submit" name="Login">
     
     </form>

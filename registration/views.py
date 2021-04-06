@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
 from .forms import CreateAdminForm, LoginForm
-
+#signup method
 def signup(request):
     form=CreateAdminForm()
 
@@ -17,6 +17,7 @@ def signup(request):
     context={'form': form}
     return render(request, 'registration/signup.html', context)
 
+#login method
 def loginPage(request):
     
     if request.method=='POST':
@@ -26,11 +27,16 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             return redirect('menu')
+        else:
+            messages.info(request, 'Username or Password is incorrect')
+            return render(request, 'registration/login.html')
     return render(request, 'registration/login.html')
 
-def logout(request):
-    return render('home')
+#logout method
+def logoutUser(request):
+    return redirect('home')
 
 def menu(request):
+    logout(request)
     return render(request, 'registration/menu.html')
 
