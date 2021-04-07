@@ -1,0 +1,35 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h1>Add Student</h1>
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        ID
+        {{form.sid}}
+        <br><br>
+        Name
+        {{form.sname}}
+        <br><br>
+        Date of birth
+        {{form.dob}}
+        <br><br>
+        Branch
+        {{form.branch}}
+        <br><br>
+        Year
+        {{form.year}}
+        <br><br>
+        
+        <br>
+        <input type="submit" name="Add">
+    
+    </form>
+    
+</div>
+
+
+{% endblock %}
