@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
 from .forms import CreateAdminForm, LoginForm, StudentForm, BookForm
+from .models import *
 
 
 #signup method
@@ -21,7 +22,6 @@ def signup(request):
 
 #login method
 def loginPage(request):
-    
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
@@ -39,7 +39,6 @@ def logoutUser(request):
     return redirect('home')
 
 def menu(request):
-    logout(request)
     return render(request, 'registration/menu.html')
 
 
@@ -64,3 +63,9 @@ def addBook(request):
             form.save()
     context={'form': form}
     return render(request, 'registration/addbook.html', context)
+
+#View Student table
+def studentTable(request):
+    students=AddStudent.objects.all()
+
+    return render(request, 'registration/studenttable.html', {'students': students})
