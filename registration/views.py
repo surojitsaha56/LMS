@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import CreateAdminForm, LoginForm, StudentForm
+from .forms import CreateAdminForm, LoginForm, StudentForm, BookForm
 
 
 #signup method
@@ -43,7 +43,7 @@ def menu(request):
     return render(request, 'registration/menu.html')
 
 
-  
+#Add Student
 def addStudent(request):
     form=StudentForm()
 
@@ -54,3 +54,13 @@ def addStudent(request):
     context={'form': form}
     return render(request, 'registration/addstudent.html', context)
 
+#Add Book
+def addBook(request):
+    form=BookForm()
+
+    if request.method=='POST':
+        form=BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context={'form': form}
+    return render(request, 'registration/addbook.html', context)

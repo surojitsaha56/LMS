@@ -1,0 +1,32 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h1>Add Book</h1>
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        ID
+        {{form.bid}}
+        <br><br>
+        Name
+        {{form.bname}}
+        <br><br>
+        ISBN
+        {{form.isbn}}
+        <br><br>
+        Author
+        {{form.author}}
+        <br><br>
+        
+        <br>
+        <input type="submit" name="Add">
+    
+    </form>
+    
+</div>
+
+
+{% endblock %}
