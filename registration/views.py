@@ -69,3 +69,8 @@ def studentTable(request):
     students=AddStudent.objects.all()
 
     return render(request, 'registration/studenttable.html', {'students': students})
+
+#View Book table
+def bookTable(request):
+    books=AddBook.objects.all()
+    return render(request, 'registration/booktable.html', {'books': books})
