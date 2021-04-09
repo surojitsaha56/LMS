@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import CreateAdminForm, LoginForm, StudentForm, BookForm
+from .forms import CreateAdminForm, LoginForm, StudentForm, BookForm, IssueBookForm
 from .models import *
 
 
@@ -74,3 +74,9 @@ def studentTable(request):
 def bookTable(request):
     books=AddBook.objects.all()
     return render(request, 'registration/booktable.html', {'books': books})
+
+#Issue Book form
+def issueBook(request):
+    form=IssueBookForm()
+    context={'form': form}
+    return render(request, 'registration/issuebook.html', context)

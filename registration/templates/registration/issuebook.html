@@ -1,0 +1,41 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h1>Issue Book Form</h1>
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        ID
+        {{form.iid}}
+        <br><br>
+        Student ID
+        {{form.sid}}
+        <br><br>
+        <input type="submit" value="Search">
+        <br><br>
+        Student Name
+        {{form.sname}}
+        <br><br>
+        Book ID
+        {{form.bid}}
+        <br><br>
+        <input type="submit" value="Search">
+        <br><br>
+        Book Name
+        {{form.sname}}
+        <br><br>
+        Date of issue
+        {{form.dateofissue}}
+        <br><br>
+        <br>
+        <input type="submit" name="Add">
+    
+    </form>
+    
+</div>
+
+
+{% endblock %}

@@ -34,3 +34,14 @@ class AddBook(models.Model):
 
     def __str__(self):
         return self.bname
+
+class IssueBook(models.Model):
+    iid=models.IntegerField()
+    sid=models.IntegerField()
+    sname=models.CharField(max_length=50)
+    bid=models.IntegerField()
+    bname=models.CharField(max_length=50)
+    dateofissue=models.DateField()
+
+    def __str__(self):
+        return "Issue "+self.bname

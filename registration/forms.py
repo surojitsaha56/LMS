@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 
-from .models import AddStudent, AddBook
+from .models import AddStudent, AddBook, IssueBook
 
 class CreateAdminForm(UserCreationForm):
     class Meta:
@@ -25,6 +25,13 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = AddBook
         fields=['bid', 'bname', 'isbn', 'author']
+
+class IssueBookForm(forms.ModelForm):
+    class Meta:
+        model = IssueBook
+        fields=['iid', 'sid', 'sname', 'bid', 'bname', 'dateofissue']
+
+
 
 
 
