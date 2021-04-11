@@ -36,12 +36,11 @@ class AddBook(models.Model):
         return self.bname
 
 class IssueBook(models.Model):
-    iid=models.IntegerField()
-    sid=models.IntegerField()
-    sname=models.CharField(max_length=50)
-    bid=models.IntegerField()
-    bname=models.CharField(max_length=50)
+    s_id=models.IntegerField()
+    s_name=models.CharField(max_length=50)
+    b_id=models.IntegerField()
+    b_name=models.CharField(max_length=50)
     dateofissue=models.DateField()
 
     def __str__(self):
-        return "Issue "+self.bname
+        return "Issue "+self.b_name

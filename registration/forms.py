@@ -26,10 +26,12 @@ class BookForm(forms.ModelForm):
         model = AddBook
         fields=['bid', 'bname', 'isbn', 'author']
 
-class IssueBookForm(forms.ModelForm):
+class IssueForm(forms.ModelForm):
     class Meta:
         model = IssueBook
-        fields=['iid', 'sid', 'sname', 'bid', 'bname', 'dateofissue']
+        fields=['s_id', 's_name', 'b_id', 'b_name', 'dateofissue']
+
+
 
 
 

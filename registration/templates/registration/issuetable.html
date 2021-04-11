@@ -4,30 +4,23 @@
 
 
 
-<h1>Issue Book Form</h1>
+<h1>Issue Table</h1>
 <div>
     <form method="POST" action="">
         {% csrf_token %}
-        ID
-        {{form.iid}}
-        <br><br>
         Student ID
-        {{form.sid}}
-        <br><br>
-        <input type="submit" value="Search">
+        {{form.s_id}}
         <br><br>
         Student Name
-        {{form.sname}}
+        {{form.s_name}}
         <br><br>
         Book ID
-        {{form.bid}}
-        <br><br>
-        <input type="submit" value="Search">
+        {{form.b_id}}
         <br><br>
         Book Name
-        {{form.sname}}
+        {{form.b_name}}
         <br><br>
-        Date of issue
+        Date of Issue
         {{form.dateofissue}}
         <br><br>
         <br>
@@ -36,6 +29,7 @@
     </form>
     
 </div>
+    
 
 
 {% endblock %}
