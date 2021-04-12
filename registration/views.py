@@ -83,12 +83,17 @@ def issueTable(request):
     if request.method=='POST':
         studentid=request.POST.get('s_id')
         bookid=request.POST.get('b_id')
-        name=AddStudent.objects.get(sid=studentid)
-       
         if AddStudent.objects.filter(sid=studentid).exists() and AddBook.objects.filter(bid=bookid).exists():
-            form=IssueForm(request.POST)
-            if form.is_valid():
-                form.save()
+            studentname=request.POST.get('s_name')
+            bookname=request.POST.get('b_name')
+            print(studentname)
+            print(bookname)
+            print(str(AddStudent.objects.get(sid=studentid)))
+            print(str(AddBook.objects.get(bid=studentid)))
+            if str(AddStudent.objects.get(sid=studentid))==studentname and str(AddBook.objects.get(bid=bookid))==bookname:
+                form=IssueForm(request.POST)
+                if form.is_valid():
+                    form.save()
     context={'form': form}
     return render(request, 'registration/issuetable.html', context)
 
