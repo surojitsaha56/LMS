@@ -12,4 +12,5 @@ urlpatterns = [
     path('studenttable', views.studentTable, name='studenttable'),
     path('booktable', views.bookTable, name='booktable'),
     path('issuetable', views.issueTable, name='issuetable'),
+    path('showissuetable', views.showIssueTable, name='showissuetable'),
 ]

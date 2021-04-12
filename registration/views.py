@@ -97,6 +97,11 @@ def issueTable(request):
     context={'form': form}
     return render(request, 'registration/issuetable.html', context)
 
+#View Book table
+def showIssueTable(request):
+    issuebooks=IssueBook.objects.all()
+    return render(request, 'registration/showissuetable.html', {'issuebooks': issuebooks})
+
 
 
 
