@@ -86,10 +86,6 @@ def issueTable(request):
         if AddStudent.objects.filter(sid=studentid).exists() and AddBook.objects.filter(bid=bookid).exists():
             studentname=request.POST.get('s_name')
             bookname=request.POST.get('b_name')
-            print(studentname)
-            print(bookname)
-            print(str(AddStudent.objects.get(sid=studentid)))
-            print(str(AddBook.objects.get(bid=studentid)))
             if str(AddStudent.objects.get(sid=studentid))==studentname and str(AddBook.objects.get(bid=bookid))==bookname:
                 form=IssueForm(request.POST)
                 if form.is_valid():
@@ -107,9 +103,17 @@ def returnBook(request):
     form=ReturnForm()
 
     if request.method=='POST':
-        form=ReturnForm(request.POST)
-        if form.is_valid():
-            form.save()
+        studentid2=request.POST.get('sid2')
+        bookid2=request.POST.get('bid2')
+        print(studentid2)
+        print(bookid2)
+        if IssueBook.objects.filter(s_id=studentid2).exists() and IssueBook.objects.filter(b_id=bookid2).exists():
+
+            form=ReturnForm(request.POST)
+            if form.is_valid():
+                form.save()
+                tuple2delete=IssueBook.objects.get(s_id=studentid2, b_id=bookid2)
+                tuple2delete.delete()
     context={'form': form}
     return render(request, 'registration/returnbook.html', context)
 
