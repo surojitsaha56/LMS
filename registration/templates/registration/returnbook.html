@@ -1,0 +1,24 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h1>Return Book Form</h1>
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        Student ID
+        {{form.sid2}}
+        <br><br>
+        Book ID
+        {{form.bid2}}
+        <br><br>
+        Date of Return
+        {{form.dateofreturn}}
+        <br><br> 
+        <br>
+        <input type="submit" name="Add">
+
+{% endblock %}

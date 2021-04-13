@@ -44,3 +44,10 @@ class IssueBook(models.Model):
 
     def __str__(self):
         return "Issue "+self.b_name
+
+class ReturnBook(models.Model):
+    #sid, bookid, dateofreturn
+    sid2=models.IntegerField()
+    bid2=models.IntegerField()
+    dateofreturn=models.DateField()
+

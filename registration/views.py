@@ -102,6 +102,17 @@ def showIssueTable(request):
     issuebooks=IssueBook.objects.all()
     return render(request, 'registration/showissuetable.html', {'issuebooks': issuebooks})
 
+#Return Book form
+def returnBook(request):
+    form=ReturnForm()
+
+    if request.method=='POST':
+        form=ReturnForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context={'form': form}
+    return render(request, 'registration/returnbook.html', context)
+
 
 
 

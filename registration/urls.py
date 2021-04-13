@@ -13,4 +13,5 @@ urlpatterns = [
     path('booktable', views.bookTable, name='booktable'),
     path('issuetable', views.issueTable, name='issuetable'),
     path('showissuetable', views.showIssueTable, name='showissuetable'),
+    path('returnbook', views.returnBook, name='returnbook'),
 ]
