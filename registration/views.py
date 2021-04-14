@@ -117,6 +117,10 @@ def returnBook(request):
     context={'form': form}
     return render(request, 'registration/returnbook.html', context)
 
+#Show return book
+def showReturnBook(request):
+    returnbooks=ReturnBook.objects.all()
+    return render(request, 'registration/showreturnbook.html', {'returnbooks': returnbooks})
 
 
 
