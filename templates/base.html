@@ -51,13 +51,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                       <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
                           <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
                           <form id="logout" method="POST" action="{%url 'logout'%}">
                             {%csrf_token%}
                             <input type="hidden"></input>
-                          </form>
                         </li>
+                        {% else %}
                           <li class="nav-item">
                           <a class="nav-link" href="{%url 'signup'%}">Sign Up</a>
                           </li>
@@ -65,6 +66,7 @@
                           <a class="nav-link" href="{%url 'login'%}">Login</a>
                         </li>
                       </ul>
+                      {%endif%}
                     </div>
             </div>
             

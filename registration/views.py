@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from .forms import *
 from .models import *
@@ -36,13 +37,17 @@ def loginPage(request):
 
 #logout method
 def logoutUser(request):
-    return redirect('home')
+    if request.method=='POST':
+        auth.logout(request)
+        return redirect('home')
 
+@login_required
 def menu(request):
     return render(request, 'registration/menu.html')
 
 
 #Add Student
+@login_required
 def addStudent(request):
     form=StudentForm()
 
@@ -54,6 +59,7 @@ def addStudent(request):
     return render(request, 'registration/addstudent.html', context)
 
 #Add Book
+@login_required
 def addBook(request):
     form=BookForm()
 
@@ -67,17 +73,20 @@ def addBook(request):
 
 
 #View Student table
+@login_required
 def studentTable(request):
     students=AddStudent.objects.all()
 
     return render(request, 'registration/studenttable.html', {'students': students})
 
 #View Book table
+@login_required
 def bookTable(request):
     books=AddBook.objects.all()
     return render(request, 'registration/booktable.html', {'books': books})
 
 #issue table
+@login_required
 def issueTable(request):
     form=IssueForm()
     if request.method=='POST':
@@ -94,11 +103,13 @@ def issueTable(request):
     return render(request, 'registration/issuetable.html', context)
 
 #View Book table
+@login_required
 def showIssueTable(request):
     issuebooks=IssueBook.objects.all()
     return render(request, 'registration/showissuetable.html', {'issuebooks': issuebooks})
 
 #Return Book form
+@login_required
 def returnBook(request):
     form=ReturnForm()
 
@@ -118,6 +129,7 @@ def returnBook(request):
     return render(request, 'registration/returnbook.html', context)
 
 #Show return book
+@login_required
 def showReturnBook(request):
     returnbooks=ReturnBook.objects.all()
     return render(request, 'registration/showreturnbook.html', {'returnbooks': returnbooks})
