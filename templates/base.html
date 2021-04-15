@@ -53,11 +53,16 @@
                       <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
+                          <a class="nav-link" href="{%url 'menu'%}">Menu</a>
+                        </li>
+                        <li class="nav-item">
                           <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
                           <form id="logout" method="POST" action="{%url 'logout'%}">
                             {%csrf_token%}
                             <input type="hidden"></input>
                         </li>
+                            
+                  
                         {% else %}
                           <li class="nav-item">
                           <a class="nav-link" href="{%url 'signup'%}">Sign Up</a>

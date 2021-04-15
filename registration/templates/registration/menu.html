@@ -4,21 +4,21 @@
 
 <h1>Menu Page</h1>
 <div class="container">
-    <input class="btn btn-primary" type="submit" value="Add student"></input>
+    <a href="{% url 'addstudent' %}">Add Student</a>
     <br><br>
-    <input class="btn btn-primary" type="submit" value="Add book"></input>
+    <a href="{% url 'addbook' %}">Add Book</a>
     <br><br>
-    <input class="btn btn-primary" type="submit" value="Issue book"></input>
+    <a href="{% url 'studenttable' %}">Student list</a>
     <br><br>
-    <input class="btn btn-primary" type="submit" value="Return book"></input>
+    <a href="{% url 'booktable' %}">Book list</a>
     <br><br>
-    <input class="btn btn-primary" type="submit" value="Issue book details"></input>
+    <a href="{% url 'issuetable' %}">Issue Book</a>
     <br><br>
-    <input class="btn btn-primary" type="submit" value="Return book details"></input>
+    <a href="{% url 'showissuetable' %}">Issue Book List</a>
     <br><br>
-    <input class="btn btn-primary" type="submit" value="Student details"></input>
+    <a href="{% url 'returnbook' %}">Return Book</a>
     <br><br>
-    <input class="btn btn-primary" type="submit" value="Book details"></input>
+    <a href="{% url 'showreturnbook' %}">Return Book list</a>
 </div>
 
 {% endblock %}
