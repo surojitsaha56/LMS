@@ -2,35 +2,99 @@
 
 {% block content %}
 
+{%load static%}
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-size: cover;
+        background: url("/static/homeimage.jpg") 80% 0 no-repeat fixed;
+    }
+    .login-box{
+        width: 280px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+    }
+    .signup-box h1{
+        float: left;
+        font-size: 40px;
+        border-bottom: 6px solid black;
+        margin-bottom: 50px;
+        padding: 13px 0;
+    }
+    .textbox{
+        width: 100%;
+        overflow: hidden;
+        font-size: 20px;
+        padding: 8px 0;
+        margin: 8px 0;
+        border-bottom: 1px solid black;
+    }
+    
+    .textbox input{
+        border: none;
+        outline: none;
+        background: none;
+        color: black;
+        font-size: 18px;
+        width: 80%;
+        float: left;
+        margin: 0 10px;
+    }
+    .btn{
+        width: 90%;
+        background: none;
+        border: 2px solid black;
+        color: black;
+        padding: 5px;
+        font-size: 18;
+        cursor: pointer;
+        margin: 12px;
+    }
+</style>
 
 
-<h1>Sign Up</h1>
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        
-        {{form.username.label}}
-        {{form.username}}
-        <br><br>
-        {{form.email.label}}
-        {{form.email}}
-        <br><br>
-        {{form.password1.label}}
-        {{form.password1}}
-        <br><br>
-        {{form.password2.label}}
-        {{form.password2}}
-        <br><br>
-        {{form.errors}}
-        {% for message in messages %}
+<body>
+    <div class="signup-box" style="width: 280px; position: absolute; top: 20%; left:40%;">
+        <h1>Sign Up</h1>
+        <form method="POST" action="">
+            <div class="textbox">
+                {% csrf_token %}
+                <div class="textbox">
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="textbox">
+                    <input type="text" name="email" placeholder="Email ID">
+                </div>
+                <div class="textbox">
+                    <input type="password" name="password1" placeholder="Password">
+                </div>
+                <div class="textbox">
+                    <input type="password" name="password2" placeholder="Confirm Password">
+                </div>
+            </div>
+            {{form.errors}}
+            {% for message in messages %}
             <p id="messages">{{message}}</p>
-        {%endfor%}
-        <br>
-        <input type="submit" name="Signup">
-    
-    </form>
-    
-</div>
+            {%endfor%}
+            <input class="btn" type="submit" name="Signup">
+        </form>
+    </div>
+</body>
 
-
+<div>
+    
 {% endblock %}
+        
+       
+
+       
+       
+        
+    
+ 
