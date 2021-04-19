@@ -37,9 +37,8 @@ def loginPage(request):
 
 #logout method
 def logoutUser(request):
-    if request.method=='POST':
-        auth.logout(request)
-        return redirect('home')
+    auth.logout(request)
+    return redirect('/')
 
 @login_required
 def menu(request):
@@ -116,6 +115,7 @@ def returnBook(request):
     if request.method=='POST':
         studentid2=request.POST.get('sid2')
         bookid2=request.POST.get('bid2')
+        
         print(studentid2)
         print(bookid2)
         if IssueBook.objects.filter(s_id=studentid2).exists() and IssueBook.objects.filter(b_id=bookid2).exists():
@@ -123,6 +123,7 @@ def returnBook(request):
             form=ReturnForm(request.POST)
             if form.is_valid():
                 form.save()
+
                 tuple2delete=IssueBook.objects.get(s_id=studentid2, b_id=bookid2)
                 tuple2delete.delete()
     context={'form': form}
