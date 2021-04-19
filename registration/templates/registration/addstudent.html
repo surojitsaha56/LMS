@@ -2,28 +2,36 @@
 
 {% block content %}
 
+<style>
+    .container div {
+    margin: 0 auto;
+    width: 25%;
+    padding-top: 10px;
+    }
+    
+</style>
 
 
-<h1>Add Student</h1>
-<div>
+<div class="container">
+    <br>
+    <h1>Add Student</h1><hr>
     <form method="POST" action="">
         {% csrf_token %}
-        ID
+        ID<br>
         {{form.sid}}
-        <br><br>
-        Name
+        <br>
+        Name<br>
         {{form.sname}}
-        <br><br>
-        Date of birth
+        <br>
+        Date of birth<br>
         {{form.dob}}
-        <br><br>
-        Branch
+        <br>
+        Branch<br>
         {{form.branch}}
-        <br><br>
-        Year
+        <br>
+        Year<br>
         {{form.year}}
-        <br><br>
-        
+        <br>
         <br>
         <input type="submit" name="Add">
     

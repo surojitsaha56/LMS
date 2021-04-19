@@ -2,32 +2,39 @@
 
 {% block content %}
 
+<style>
+    .container div {
+    margin: 0 auto;
+    width: 45%;
+    padding-top: 10px;
+    }
+</style>
 
 
-<h1>Issue Table</h1>
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        Student ID
-        {{form.s_id}}
-        <br><br>
-        Student Name
-        {{form.s_name}}
-        <br><br>
-        Book ID
-        {{form.b_id}}
-        <br><br>
-        Book Name
-        {{form.b_name}}
-        <br><br>
-        Date of Issue
-        {{form.dateofissue}}
-        <br><br>
-        <br>
-        <input type="submit" name="Add">
-    
-    </form>
-    
+<div class="container">
+    <div class="issuebook-form">
+        <h1>Issue Table</h1><hr>
+        <form method="POST" action="">
+            {% csrf_token %}
+            Student ID
+            {{form.s_id}}
+            <br>
+            Student Name
+            {{form.s_name}}
+            <br>
+            Book ID
+            {{form.b_id}}
+            <br>
+            Book Name
+            {{form.b_name}}
+            <br>
+            Date of Issue
+            {{form.dateofissue}}
+            <br>
+            <br>
+            <input type="submit" name="Add">
+        </form>
+    </div>
 </div>
     
 

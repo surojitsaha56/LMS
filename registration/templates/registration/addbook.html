@@ -2,30 +2,42 @@
 
 {% block content %}
 
+<style>
+    .container{
+        position: relative;
+    }
+    .addbook-form{
+        padding: 50px;
+        position: absolute;
+        width: 300px;
+        top: 60%;
+        left: 35%;
+    }
+</style>
 
 
-<h1>Add Book</h1>
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        ID
-        {{form.bid}}
-        <br><br>
-        Name
-        {{form.bname}}
-        <br><br>
-        ISBN
-        {{form.isbn}}
-        <br><br>
-        Author
-        {{form.author}}
-        <br><br>
-        
-        <br>
-        <input type="submit" name="Add">
-    
-    </form>
-    
+<div class="container">
+    <div class="addbook-form">
+        <h1>Add Book</h1><hr>
+        <form method="POST" action="">
+            {% csrf_token %}
+            ID<br>
+            {{form.bid}}
+            <br>
+            Name<br>
+            {{form.bname}}
+            <br>
+            ISBN<br>
+            {{form.isbn}}
+            <br>
+            Author<br>
+            {{form.author}}
+            <br>
+            
+            <br>
+            <input type="submit" name="Add">
+        </form>
+    </div>
 </div>
 
 
