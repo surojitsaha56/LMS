@@ -1,24 +1,46 @@
 {%  extends 'base.html' %}
 
 {% block content %}
+<style>
+    .wrapper ul li a{
+        color: black;
+        text-decoration: none;
+    }
+    .wrapper ul{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        list-style: none;
+        text-align: center;
+    }
+    .wrapper ul li a{
+        color: black;
+        text-decoration: none;
+        font-size: 30px;
+        font-weight: 500;
+    }
+    .wrapper ul li a:hover{
+        color: blue;
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <ul class="menu">
+            <li><a href="{% url 'addstudent' %}">Add Student</a></li>
+            <li><a href="{% url 'addbook' %}">Add Book</a></li>
+            <hr>
+            <li><a href="{% url 'studenttable' %}">Student list</a></li>
+            <li><a href="{% url 'booktable' %}">Book list</a></li>
+            <hr>
+            <li><a href="{% url 'issuetable' %}">Issue Book</a></li>
+            <li><a href="{% url 'showissuetable' %}">Issue Book List</a></li>
+            <hr>
+            <li><a href="{% url 'returnbook' %}">Return Book</a></li>
+            <li><a href="{% url 'showreturnbook' %}">Return Book list</a></li>
+        </ul>
+    </div>
+</body>
 
-<h1>Menu Page</h1>
-<div class="container">
-    <a href="{% url 'addstudent' %}">Add Student</a>
-    <br><br>
-    <a href="{% url 'addbook' %}">Add Book</a>
-    <br><br>
-    <a href="{% url 'studenttable' %}">Student list</a>
-    <br><br>
-    <a href="{% url 'booktable' %}">Book list</a>
-    <br><br>
-    <a href="{% url 'issuetable' %}">Issue Book</a>
-    <br><br>
-    <a href="{% url 'showissuetable' %}">Issue Book List</a>
-    <br><br>
-    <a href="{% url 'returnbook' %}">Return Book</a>
-    <br><br>
-    <a href="{% url 'showreturnbook' %}">Return Book list</a>
-</div>
 
 {% endblock %}
