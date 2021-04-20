@@ -50,4 +50,5 @@ class ReturnBook(models.Model):
     sid2=models.IntegerField()
     bid2=models.IntegerField()
     dateofreturn=models.DateField()
+    fine=models.IntegerField(default=0)
 

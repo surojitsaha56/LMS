@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 from .forms import *
 from .models import *
@@ -91,6 +92,7 @@ def issueTable(request):
     if request.method=='POST':
         studentid=request.POST.get('s_id')
         bookid=request.POST.get('b_id')
+        dateOfissue=request.POST.get('dateofissue')
         if AddStudent.objects.filter(sid=studentid).exists() and AddBook.objects.filter(bid=bookid).exists():
             studentname=request.POST.get('s_name')
             bookname=request.POST.get('b_name')
@@ -107,6 +109,7 @@ def showIssueTable(request):
     issuebooks=IssueBook.objects.all()
     return render(request, 'registration/showissuetable.html', {'issuebooks': issuebooks})
 
+
 #Return Book form
 @login_required
 def returnBook(request):
@@ -115,16 +118,39 @@ def returnBook(request):
     if request.method=='POST':
         studentid2=request.POST.get('sid2')
         bookid2=request.POST.get('bid2')
-        
-        print(studentid2)
-        print(bookid2)
+
         if IssueBook.objects.filter(s_id=studentid2).exists() and IssueBook.objects.filter(b_id=bookid2).exists():
 
             form=ReturnForm(request.POST)
             if form.is_valid():
-                form.save()
 
                 tuple2delete=IssueBook.objects.get(s_id=studentid2, b_id=bookid2)
+
+                #fine feature
+                DATEOFISSUE=str(tuple2delete.dateofissue)
+                DATEOFRETURN=request.POST.get('dateofreturn')
+                iyear=int(DATEOFISSUE[0:4])
+                imonth=int(DATEOFISSUE[5:7])
+                iday=int(DATEOFISSUE[8:10])
+                ryear=int(DATEOFRETURN[0:4])
+                rmonth=int(DATEOFRETURN[5:7])
+                rday=int(DATEOFRETURN[8:10])
+                date_1=date(year=iyear, month=imonth, day=iday)
+                date_2=date(year=ryear, month=rmonth, day=rday)
+                date_delta=date_2-date_1
+                number_of_days=date_delta.days
+                print(number_of_days)
+                fine2pay=0
+                if number_of_days>7:
+                    fine2pay=(number_of_days-7)*2
+                else:
+                    fine2pay=0
+                print(fine2pay)
+                finalform=form.save(commit=False)
+                finalform.fine=fine2pay
+                finalform.save()
+                
+                #delete entry from issuetable
                 tuple2delete.delete()
     context={'form': form}
     return render(request, 'registration/returnbook.html', context)
@@ -134,6 +160,7 @@ def returnBook(request):
 def showReturnBook(request):
     returnbooks=ReturnBook.objects.all()
     return render(request, 'registration/showreturnbook.html', {'returnbooks': returnbooks})
+
 
 
 

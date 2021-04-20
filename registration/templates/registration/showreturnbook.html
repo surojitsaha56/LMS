@@ -17,12 +17,14 @@
                     <th>Student ID</th>
                     <th>Book ID</th>
                     <th>Date of Return</th>
+                    <th>Fine</th>
                 </tr>
                 {% for i in returnbooks %}
                 <tr>
                     <td>{{i.sid2}}</td>
                     <td>{{i.bid2}}</td>
                     <td>{{i.dateofreturn}}</td>
+                    <td>{{i.fine}}</td>
                 </tr>
                 {% endfor %}
             </table>
