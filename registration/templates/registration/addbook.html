@@ -36,7 +36,11 @@
             
             <br>
             <input type="submit" name="Add">
+            {% for message in messages %}
+            <h3><p id="messages">{{message}}</p></h3>
+            {%endfor%}
         </form>
+        
     </div>
 </div>
 

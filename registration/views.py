@@ -52,9 +52,12 @@ def addStudent(request):
     form=StudentForm()
 
     if request.method=='POST':
+        studentid=request.POST.get('sid')
         form=StudentForm(request.POST)
         if form.is_valid():
-            form.save()
+            if not AddStudent.objects.filter(sid=studentid).exists():
+                form.save()
+                messages.success(request, 'Student was added')
     context={'form': form}
     return render(request, 'registration/addstudent.html', context)
 
@@ -64,9 +67,12 @@ def addBook(request):
     form=BookForm()
 
     if request.method=='POST':
+        bookid=request.POST.get('bid')
         form=BookForm(request.POST)
         if form.is_valid():
-            form.save()
+            if not AddBook.objects.filter(bid=bookid).exists():
+                form.save()
+                messages.success(request, 'Student was added')
     context={'form': form}
     return render(request, 'registration/addbook.html', context)
 
@@ -100,6 +106,7 @@ def issueTable(request):
                 form=IssueForm(request.POST)
                 if form.is_valid():
                     form.save()
+                    messages.success(request, 'Book issued')
     context={'form': form}
     return render(request, 'registration/issuetable.html', context)
 
@@ -148,6 +155,7 @@ def returnBook(request):
                 print(fine2pay)
                 finalform=form.save(commit=False)
                 finalform.fine=fine2pay
+                messages.success(request, 'Book returned')
                 finalform.save()
                 
                 #delete entry from issuetable
