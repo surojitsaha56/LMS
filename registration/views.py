@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import date
+import datetime
+import xlwt
 
 from .forms import *
 from .models import *
@@ -169,6 +171,34 @@ def showReturnBook(request):
     returnbooks=ReturnBook.objects.all()
     return render(request, 'registration/showreturnbook.html', {'returnbooks': returnbooks})
 
+#ExportExcelSheet
+def exportExcel(request):
+    response=HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition']='attachment; filename=Students'+ \
+        str(datetime.datetime.now())+'.xls'
+    wb=xlwt.Workbook(encoding='utf-8')
+    ws=wb.add_sheet('Students')
+    row_num=0
+    font_style=xlwt.XFStyle()
+    font_style.font.bold=True
+
+    columns=['ID', 'Name', 'Date of Birth', 'Branch', 'Year']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style=xlwt.XFStyle()
+
+    rows=AddStudent.objects.all().values_list('sid', 'sname', 'dob', 'branch', 'year')
+
+    for row in rows:
+        row_num+=1
+
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+    wb.save(response)
+
+    return response
 
 
 

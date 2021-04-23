@@ -15,4 +15,5 @@ urlpatterns = [
     path('showissuetable', views.showIssueTable, name='showissuetable'),
     path('returnbook', views.returnBook, name='returnbook'),
     path('showreturnbook', views.showReturnBook, name='showreturnbook'),
+    path('exportexcel', views.exportExcel, name='exportexcel'),
 ]
