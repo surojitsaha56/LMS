@@ -4,17 +4,34 @@
 
 <style>
     .container div {
-    margin: 0 auto;
-    width: 25%;
-    padding-top: 10px;
+    position:relative;
     }
+    .studentform{
+     
+        padding: 50px;
+        position: absolute;
+        width: 350px;
+        top: 50%;
+        left: 30%;
+         border:3px solid;
+        background-color:black;
+        color:white;
+            border-radius:50px;
+     
+
+    }
+input:hover
+      {
+        background-color:lightblue;
+      }
     
 </style>
 
 
 <div class="container">
     <br>
-    <h1>Add Student</h1><hr>
+    <div class=" studentform">
+    <h1> Add Student</h1><hr>
     <form method="POST" action="">
         {% csrf_token %}
         ID<br>
@@ -38,7 +55,7 @@
         <h3><p id="messages">{{message}}</p></h3>
         {%endfor%}
     </form>
-    
+    </div>
 </div>
 
 

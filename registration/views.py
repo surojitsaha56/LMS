@@ -55,6 +55,8 @@ def addStudent(request):
 
     if request.method=='POST':
         studentid=request.POST.get('sid')
+        dob=request.POST.get('dob')
+        print(dob)
         form=StudentForm(request.POST)
         if form.is_valid():
             if not AddStudent.objects.filter(sid=studentid).exists():
@@ -74,7 +76,7 @@ def addBook(request):
         if form.is_valid():
             if not AddBook.objects.filter(bid=bookid).exists():
                 form.save()
-                messages.success(request, 'Student was added')
+                messages.success(request, 'Book was added')
     context={'form': form}
     return render(request, 'registration/addbook.html', context)
 

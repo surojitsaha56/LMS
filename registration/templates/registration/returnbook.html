@@ -1,27 +1,60 @@
 {%  extends 'base.html' %}
 
 {% block content %}
+<style>
+.container{
+        position: relative;
+    }
+    .returnbook{
+        padding: 50px;
+        position: absolute;
+        width: 350px;
+        top: 60%;
+        left: 35%;
+
+    }
+    .returnbook{
+     padding: 50px;
+     border-radius:50px;
+     background-color:black;
+     color:white;
+     border:3px solid;
+    }
 
 
+    input:hover
+      {
+        background-color:lightblue;
+      }
+</style>
 
-<h1>Return Book Form</h1>
+
 
 <div>
+<div class="container">
+    <div class ="returnbook">
     <form method="POST" action="">
         {% csrf_token %}
+       <h1>Return Book </h1>
         Student ID
+        <br>
         {{form.sid2}}
         <br><br>
         Book ID
+        <br>
         {{form.bid2}}
         <br><br>
         Date of Return
+        <br>
         {{form.dateofreturn}}
         <br><br> 
         <br>
         <input type="submit" name="Add">
         {% for message in messages %}
         <h3><p id="messages">{{message}}</p></h3>
+        </div>
+        </div>
+
         {%endfor%}
 
 {% endblock %}
