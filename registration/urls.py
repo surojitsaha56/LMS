@@ -15,5 +15,10 @@ urlpatterns = [
     path('showissuetable', views.showIssueTable, name='showissuetable'),
     path('returnbook', views.returnBook, name='returnbook'),
     path('showreturnbook', views.showReturnBook, name='showreturnbook'),
-    path('exportexcel', views.exportExcel, name='exportexcel'),
+    path('exportexcelstudent', views.exportExcelStudent, name='exportexcelstudent'),
+    path('exportexcelbook', views.exportExcelBook, name='exportexcelbook'),
+    path('exportexcelbook', views.exportExcelBook, name='exportexcelbook'),
+    path('exportexcelissuebook', views.exportExcelIssueBook, name='exportexcelissuebook'),
+    path('exportexcelreturnbook', views.exportExcelReturnBook, name='exportexcelreturnbook'),
 ]
+

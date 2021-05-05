@@ -86,7 +86,6 @@ def addBook(request):
 @login_required
 def studentTable(request):
     students=AddStudent.objects.all()
-
     return render(request, 'registration/studenttable.html', {'students': students})
 
 #View Book table
@@ -174,8 +173,7 @@ def showReturnBook(request):
     return render(request, 'registration/showreturnbook.html', {'returnbooks': returnbooks})
 
 #ExportExcelSheet
-
-def exportExcel(request):
+def exportExcelStudent(request):
     response=HttpResponse(content_type='application/ms-excel')
     response['Content-Disposition']='attachment; filename=Students'+ \
         str(datetime.datetime.now())+'.xls'
@@ -193,6 +191,87 @@ def exportExcel(request):
     font_style=xlwt.XFStyle()
 
     rows=AddStudent.objects.all().values_list('sid', 'sname', 'dob', 'branch', 'year')
+
+    for row in rows:
+        row_num+=1
+
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+    wb.save(response)
+
+    return response
+
+def exportExcelBook(request):
+    response=HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition']='attachment; filename=Books'+ \
+        str(datetime.datetime.now())+'.xls'
+    wb=xlwt.Workbook(encoding='utf-8')
+    ws=wb.add_sheet('Books')
+    row_num=0
+    font_style=xlwt.XFStyle()
+    font_style.font.bold=True
+    columns=['ID', 'Name', 'ISBN', 'Author']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style=xlwt.XFStyle()
+
+    rows=AddBook.objects.all().values_list('bid', 'bname', 'isbn', 'author')
+
+    for row in rows:
+        row_num+=1
+
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+    wb.save(response)
+
+    return response
+
+def exportExcelIssueBook(request):
+    response=HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition']='attachment; filename=IssueBooklist'+ \
+        str(datetime.datetime.now())+'.xls'
+    wb=xlwt.Workbook(encoding='utf-8')
+    ws=wb.add_sheet('IssueBooklist')
+    row_num=0
+    font_style=xlwt.XFStyle()
+    font_style.font.bold=True
+    columns=['Student ID', 'Student name', 'Book ID', 'Book name','Date Of Issue']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style=xlwt.XFStyle()
+
+    rows=IssueBook.objects.all().values_list('s_id', 's_name', 'b_id', 'b_name', 'dateofissue')
+
+    for row in rows:
+        row_num+=1
+
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+    wb.save(response)
+
+    return response
+
+def exportExcelReturnBook(request):
+    response=HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition']='attachment; filename=ReturnBooklist'+ \
+        str(datetime.datetime.now())+'.xls'
+    wb=xlwt.Workbook(encoding='utf-8')
+    ws=wb.add_sheet('ReturnBooklist')
+    row_num=0
+    font_style=xlwt.XFStyle()
+    font_style.font.bold=True
+    columns=['Student ID','Book ID','Date Of Return ','Fine']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style=xlwt.XFStyle()
+
+    rows=ReturnBook.objects.all().values_list('sid2', 'bid2', 'dateofreturn', 'fine')
 
     for row in rows:
         row_num+=1

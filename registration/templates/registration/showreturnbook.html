@@ -2,14 +2,21 @@
 
 {% block content %}
 
+<style>
+    .btn-primary{
+        width: 200px;
+        position: relative;
+        left: 80%;
+    }
+</style>
 
 
-
-
+<br><br>
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
-            <h1>Return Book Table</h1>
+            <h1 style=" text-align: center;">Return Book Table</h1>
+            <a href="{% url 'exportexcelreturnbook' %}" class="btn btn-primary">Export Excel</a>
         </div>
         <div class="card card-body">
             <table class="table">
@@ -17,7 +24,7 @@
                     <th>Student ID</th>
                     <th>Book ID</th>
                     <th>Date of Return</th>
-                    <th>Fine</th>
+                    <th>Fine (Rs.)</th>
                 </tr>
                 {% for i in returnbooks %}
                 <tr>
