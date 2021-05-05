@@ -3,7 +3,13 @@
 {% block content %}
 
 
-
+<style>
+    .btn-primary{
+        width: 200px;
+        position: relative;
+        left: 80%;
+    }
+</style>
 
 
 <div class="row">
@@ -11,6 +17,7 @@
         <br><br>
         <div class="card card-body">
             <h1 style="text-align: center;">Book Table</h1>
+            <a href="{% url 'exportexcel' %}" class="btn btn-primary">Export Excel</a>
         </div>
         <div class="card card-body">
             <table class="table">
