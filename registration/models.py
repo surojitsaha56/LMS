@@ -5,17 +5,17 @@ from django.db import models
 
 class AddStudent(models.Model):
     BRANCH_CHOICES = (
-    ('cse','CSE'),
-    ('it', 'IT'),
-    ('extc','EXTC'),
-    ('chemical','CHEMICAL'),
-    ('mechanical','MECHANICAL'),
+    ('CSE','CSE'),
+    ('IT', 'IT'),
+    ('EXTC','EXTC'),
+    ('Chemical','CHEMICAL'),
+    ('Mechanical','MECHANICAL'),
 )
     YEAR_CHOICES=(
-        ('first', 'FE'),
-        ('second', 'SE'),
-        ('third', 'TE'),
-        ('fourth', 'BE'),
+        ('FE', 'FE'),
+        ('SE', 'SE'),
+        ('TE', 'TE'),
+        ('BE', 'BE'),
     )
     sid=models.IntegerField()
     sname=models.CharField(max_length=50)
@@ -46,7 +46,6 @@ class IssueBook(models.Model):
         return "Issue "+self.b_name
 
 class ReturnBook(models.Model):
-    #sid, bookid, dateofreturn
     sid2=models.IntegerField()
     bid2=models.IntegerField()
     dateofreturn=models.DateField()
