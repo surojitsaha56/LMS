@@ -102,14 +102,20 @@ def issueTable(request):
         studentid=request.POST.get('s_id')
         bookid=request.POST.get('b_id')
         dateOfissue=request.POST.get('dateofissue')
-        if AddStudent.objects.filter(sid=studentid).exists() and AddBook.objects.filter(bid=bookid).exists():
-            studentname=request.POST.get('s_name')
-            bookname=request.POST.get('b_name')
-            if str(AddStudent.objects.get(sid=studentid))==studentname and str(AddBook.objects.get(bid=bookid))==bookname:
-                form=IssueForm(request.POST)
-                if form.is_valid():
-                    form.save()
-                    messages.success(request, 'Book issued')
+        book_name=AddBook.objects.get(bid=bookid)
+        if book_name.bcount==0:
+            messages.info(request, 'Given book not available')
+        else:
+            if AddStudent.objects.filter(sid=studentid).exists() and AddBook.objects.filter(bid=bookid).exists():
+                studentname=request.POST.get('s_name')
+                bookname=request.POST.get('b_name')
+                if str(AddStudent.objects.get(sid=studentid))==studentname and str(AddBook.objects.get(bid=bookid))==bookname:
+                    form=IssueForm(request.POST)
+                    if form.is_valid():
+                        newbcount=book_name.bcount-1
+                        AddBook.objects.filter(bid=bookid).update(bcount=newbcount)
+                        form.save()
+                        messages.success(request, 'Book issued')
     context={'form': form}
     return render(request, 'registration/issuetable.html', context)
 
@@ -163,6 +169,11 @@ def returnBook(request):
                 
                 #delete entry from issuetable
                 tuple2delete.delete()
+
+                #update entry to addtable
+                tuple2update=AddBook.objects.get(bid=bookid2)
+                newbcount=tuple2update.bcount+1
+                AddBook.objects.filter(bid=bookid2).update(bcount=newbcount)
     context={'form': form}
     return render(request, 'registration/returnbook.html', context)
 

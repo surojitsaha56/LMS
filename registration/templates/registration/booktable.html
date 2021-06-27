@@ -26,6 +26,7 @@
                     <th>Name</th>
                     <th>ISBN</th>
                     <th>Author</th>
+                    <th>No. of Copies</th>
                 </tr>
                 {% for i in books %}
                 <tr>
@@ -33,6 +34,7 @@
                     <td>{{i.bname}}</td>
                     <td>{{i.isbn}}</td>
                     <td>{{i.author}}</td>
+                    <td>{{i.bcount}}</td>
                 </tr>
                 {% endfor %}
             </table>
