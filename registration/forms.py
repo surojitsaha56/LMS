@@ -24,7 +24,7 @@ class StudentForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model = AddBook
-        fields=['bid', 'bname', 'isbn', 'author']
+        fields=['bid', 'bname', 'isbn', 'author', 'bcount']
 
 class IssueForm(forms.ModelForm):
     class Meta:

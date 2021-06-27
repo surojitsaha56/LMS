@@ -31,6 +31,7 @@ class AddBook(models.Model):
     bname=models.CharField(max_length=50)
     isbn=models.CharField(max_length=20)
     author=models.CharField(max_length=50)
+    bcount=models.IntegerField()
 
     def __str__(self):
         return self.bname
